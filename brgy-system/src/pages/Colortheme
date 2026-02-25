@@ -1,0 +1,43 @@
+#237227 (Strong / Official / Header color)
+#519A66 (Primary UI color)
+#FFAA00 (Accent / Action)
+#FFD786 (Background highlight)
+
+Primary Brand Color → #519A66
+Use this for:
+  Primary buttons
+  Links
+  Active states
+  Selected menu items
+  Icons
+  This will be your main identity color.
+-----------------------------------------------------------
+Dark Accent / Header Color → #237227
+Use this for:
+  Navbar background
+  Sidebar background
+  Footer
+  Section headers
+  Hover state for primary buttons
+  This gives your system a government / official feel.
+Example:
+  Navbar background → #237227
+  Navbar text → white
+-----------------------------------------------------------
+Accent / Call-To-Action → #FFAA00
+Use this sparingly for:
+  Important buttons (Approve, Submit, Save)
+  Notification badges
+  Warnings
+  Highlights
+  Stats numbers
+⚠️ Don’t overuse this. It should attract attention.
+-----------------------------------------------------------
+Soft Background Highlight → #FFD786
+Use this for:
+  Card highlights
+  Alert backgrounds
+  Table hover
+  Section background
+  Dashboard statistic cards
+  This keeps UI warm and friendly.
