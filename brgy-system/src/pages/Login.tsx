@@ -1,10 +1,33 @@
-import { useState } from 'react';
+import { useState } from "react";
 import { Building2 } from 'lucide-react';
+import { loginWithUsername } from '../services/authService';
+import type { SyntheticEvent } from "react"
 
 export default function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
 
+  const handleLogin = async (e: SyntheticEvent<HTMLFormElement>) => {
+    e.preventDefault()//page would not refresh when log in is click, page will reload by default it is the default behavior of form when submitted
+    setLoading(true)//for the button to be disable purpose when clicked
+
+    try{
+      const {role} = await loginWithUsername(username, password)
+
+      if(role == "admin"){
+        alert("Admin Logged in")
+      }else{
+        alert("Invalid user")
+      }
+        
+    }catch(error: any){
+      alert(error.message)
+    }
+
+    setLoading(false)
+  }
+// #FFD786   
   return (
     <div className="h-screen w-screen bg-[#FFD786] flex items-center justify-center p-10">
       {/* Desktop: two-column layout / Mobile: single card */}
@@ -44,12 +67,13 @@ export default function Login() {
             <p className="text-sm text-gray-500 mt-1">Enter your credentials to access the portal.</p>
           </div>
 
-          <form className="flex flex-col gap-5">
+          <form className="flex flex-col gap-5"
+            onSubmit={handleLogin}>
             <div className="flex flex-col gap-1">
               <label className="text-sm font-medium text-gray-700">Username</label>
               <input
                 type="text"
-                placeholder="Enter your username"
+                placeholder="username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 className="border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#519A66] text-sm text-black"
@@ -60,7 +84,7 @@ export default function Login() {
               <label className="text-sm font-medium text-gray-700">Password</label>
               <input
                 type="password"
-                placeholder="Enter your password"
+                placeholder="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 className="border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#519A66] text-sm text-black"
@@ -78,8 +102,9 @@ export default function Login() {
             <button
               type="submit"
               className="bg-[#519A66] hover:bg-[#237227] text-white py-2.5 rounded-lg font-semibold transition duration-200 text-sm mt-1"
+              disabled={loading}//disable the button when loading is true or clicked
             >
-              Login
+              {loading ? "Logging in..." : "Login"}
             </button>
           </form>
 
